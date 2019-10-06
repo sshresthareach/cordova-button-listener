@@ -1,0 +1,26 @@
+{
+    "name": "cordova-button-listener",
+    "version": "0.0.1",
+    "description": "An Android Cordova plugin that allows users to listen to device buttons",
+    "cordova": {
+        "id": "cordova-button-listener",
+        "platforms": [
+            "android"
+        ]
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/sshresthareach/cordova-button-listener.git"
+    },
+    "keywords": [
+        "button-listener",
+        "ecosystem:cordova",
+        "cordova-android"
+    ],
+    "author": "Shubha Shrestha <sshresthareach@gmail.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/sshresthareach/cordova-button-listener/issues"
+    },
+    "homepage": "https://github.com/sshresthareach/cordova-button-listener"
+}

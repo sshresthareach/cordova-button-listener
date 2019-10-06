@@ -1,0 +1,30 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ 
+ <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+ 		id="cordova-button-listener"
+ 		version="0.0.1">
+ 		
+ 	<name>ButtonListener</name> 	
+ 	<description>Cordova plugin which notifies when the user presses the buttons of the device</description> 	
+ 	<license>Apache 2.0</license> 	
+ 	<keywords>cordova,buttons,keyevent</keywords>
+ 	
+     <engines>
+      <engine name="cordova-android" version=">=4.0.0" />
+    </engines>
+    
+ 	<js-module src="www/buttonListener.js" name="buttonlistener">
+ 		<clobbers target="window.plugins.buttonListener" />
+ 	</js-module>
+ 	
+ 	<!-- android -->
+ 	<platform name="android">
+	 	<config-file target="res/xml/config.xml" parent="/*">
+		 	<feature name="ButtonListener">
+			 	<param name="android-package" value="com.reach.ButtonListener"/>
+			</feature>
+		</config-file>
+		
+		<source-file src="src/android/ButtonListener.java" target-dir="src/com/reach" />
+	</platform>
+ </plugin>
