@@ -128,42 +128,28 @@ public class ButtonListener extends CordovaPlugin implements OnKeyListener {
 	*	@return		"boolean" which indicates if the listener has consumed the event (true) or not (false) [Always false to allow that the event spreading]
 	*/
 	public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
-		JSONObject info = new JSONObject();
-        try{
-            info.put("name", "onKey");
-            info.put("keyCode", keyCode);
-            info.put("action", keyEvent.getAction());
-            info.put("deviceId", keyEvent.getDeviceId());
-            info.put("displayLabel", keyEvent.getDisplayLabel());
-            info.put("eventTime", keyEvent.getEventTime());
-            info.put("flags", keyEvent.getFlags());
-            info.put("repeatCount", keyEvent.getRepeatCount());
-            info.put("longPress", keyEvent.isLongPress());
-            info.put("string", keyEvent.toString());            
-            sendSignal(info, true);
-            return true;
-        }
-        catch(JSONException ex){
-            Log.e(ButtonListener_LOG, ex.getMessage());
-        }
-
+		if(keyEvent.getAction() == KeyEvent.ACTION_DOWN){
+			JSONObject info = new JSONObject();
+			try{
+				info.put("name", "onKey");
+				info.put("keyCode", keyCode);
+				info.put("action", keyEvent.getAction());
+				info.put("deviceId", keyEvent.getDeviceId());
+				info.put("displayLabel", keyEvent.getDisplayLabel());
+				info.put("eventTime", keyEvent.getEventTime());
+				info.put("flags", keyEvent.getFlags());
+				info.put("repeatCount", keyEvent.getRepeatCount());
+				info.put("longPress", keyEvent.isLongPress());
+				info.put("asString", keyEvent.toString());            
+				sendSignal(info, true);
+				return true;
+			}
+			catch(JSONException ex){
+				Log.e(ButtonListener_LOG, ex.getMessage());
+			}
+		}
 		return false;
 	}
-
-	// public boolean onKeyDown(int keyCode, KeyEvent event){
-	// 	JSONObject info = new JSONObject();
-	// 	try{
-	// 		info.put("signal", "Something");
-	// 		info.put("keyCode", keyCode);
-	// 		sendSignal(info, true);
-	// 		return true;
-	// 	}
-	// 	catch(JSONException ex){
-	// 		Log.e(ButtonListener_LOG, ex.getMessage());
-	// 	}
-	// 	return false;
-	// }
-
 
 	/**
 	* 	Method which sends back a new PluginResult to Javascript
