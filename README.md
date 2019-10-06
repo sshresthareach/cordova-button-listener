@@ -27,7 +27,7 @@ Cordova plugin which notifies when the user presses buttons of the device. For t
 ## Installation
 
 ``` bash
-cordova plugin add https://github.com/sshrestha/cordova-button-listener.git
+cordova plugin add https://github.com/sshresthareach/cordova-button-listener.git
 ```
 
 ## buttonlistener
