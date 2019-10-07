@@ -30,7 +30,6 @@ var cordova = require('cordova'),
  * @class ButtonListener
  */
 var ButtonListener = function () {
-    console.log('setting up ButtonListener');
 
     /**
      * List of eventHandlers listening
@@ -63,7 +62,6 @@ ButtonListener.prototype.start = function () {
  * @memberof ButtonListener
  */
 ButtonListener.prototype.stop = function () {
-    console.log('Stopping listener');
     exec(null, null, "ButtonListener", "stop", []);
     this.listening = false;
 };
@@ -77,7 +75,11 @@ ButtonListener.prototype.reset = function () {
     exec(ButtonListener.buttonListener.bind(this), ButtonListener.errorListener.bind(this), "ButtonListener", "start", []);
 };
 
-
+/**
+ * adds a listener for a keyCode
+ * @param {number} keyCode
+ * @param {function} callback
+ */
 ButtonListener.prototype.addListener = function (keyCode, callback) {
     if (typeof keyCode !== "number") {
         throw new Error('KeyCode has to be a number.');
@@ -93,9 +95,12 @@ ButtonListener.prototype.addListener = function (keyCode, callback) {
     if (this.listening === false) {
         this.start();
     }
-    // this.reset();
 }
 
+/**
+ * Removes a button listener for a keyCode
+ * @param {number} keyCode
+ */
 ButtonListener.prototype.removeListener = function (keyCode) {
     if (typeof keyCode !== "number") {
         throw new Error('KeyCode has to be a number.');
@@ -111,13 +116,14 @@ ButtonListener.prototype.removeListener = function (keyCode) {
 
     if (this.eventHandlers.length === 0) {
         this.stop();
-    } else {
-        // this.reset();
     }
-
 }
 
-
+/**
+ * Search index of the handler
+ * @param {number} keyCode 
+ * @param {Array} eventHandlers 
+ */
 function searchIndexByKeyCode(keyCode, eventHandlers) {
     for (var i = 0; i < eventHandlers.length; i++) {
         if (eventHandlers[i].keyCode === keyCode) {
