@@ -33,7 +33,7 @@ var ButtonListener = function () {
     console.log('setting up ButtonListener');
 
     /**
-     * List of keyCodes listening
+     * List of eventHandlers listening
      * @member {array} eventHandlers
      * @memberOf ButtonListener
      * @instance
@@ -88,7 +88,7 @@ ButtonListener.prototype.addListener = function (keyCode, callback) {
         callback
     }
 
-    this.keyCodes.push(eventHandler);
+    this.eventHandlers.push(eventHandler);
 
     if (this.listening === false) {
         this.start();
@@ -109,7 +109,7 @@ ButtonListener.prototype.removeListener = function (keyCode) {
 
     this.eventHandlers.splice(keyIndex, 1);
 
-    if (this.keyCodes.length === 0) {
+    if (this.eventHandlers.length === 0) {
         this.stop();
     } else {
         // this.reset();
