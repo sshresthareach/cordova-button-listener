@@ -34,11 +34,11 @@ var ButtonListener = function () {
 
     /**
      * List of keyCodes listening
-     * @member {array} keyCodes
+     * @member {array} eventHandlers
      * @memberOf ButtonListener
      * @instance
      */
-    this.keyCodes = [];
+    this.eventHandlers = [];
 
     /**
      * @member {array} handlers
@@ -54,7 +54,7 @@ var ButtonListener = function () {
  */
 ButtonListener.prototype.start = function () {
     console.log('Starting listener');
-    exec(ButtonListener.buttonListener, ButtonListener.errorListener, "ButtonListener", "start", [this.keyCodes]);
+    exec(ButtonListener.buttonListener, ButtonListener.errorListener, "ButtonListener", "start", []);
     this.listening = true;
 };
 
@@ -74,41 +74,58 @@ ButtonListener.prototype.stop = function () {
  */
 ButtonListener.prototype.reset = function () {
     console.log('Resetting listener');
-    exec(ButtonListener.buttonListener, ButtonListener.errorListener, "ButtonListener", "start", [this.keyCodes]);
+    exec(ButtonListener.buttonListener, ButtonListener.errorListener, "ButtonListener", "start", []);
 };
 
 
-ButtonListener.prototype.addListener = function(keyCode){
-    if(typeof keyCode !== "number"){
+ButtonListener.prototype.addListener = function (keyCode, callback) {
+    if (typeof keyCode !== "number") {
         throw new Error('KeyCode has to be a number.');
     }
 
-    this.keyCodes.push(keyCode);
-    if(this.listening === false){
+    const eventHandler = {
+        keyCode,
+        callback
+    }
+
+    this.keyCodes.push(eventHandler);
+
+    if (this.listening === false) {
         this.start();
     }
     // this.reset();
 }
 
-ButtonListener.prototype.removeListener = function(keyCode){
-    if(typeof keyCode !== "number"){
+ButtonListener.prototype.removeListener = function (keyCode) {
+    if (typeof keyCode !== "number") {
         throw new Error('KeyCode has to be a number.');
     }
 
-    var keyIndex = this.keyCodes.indexOf(keyCode);
+    var keyIndex = searchIndexByKeyCode(keyCode, this.eventHandlers);
 
-    if(keyIndex === -1){
+    if (keyIndex === -1) {
         throw new Error('KeyCode not found.');
     }
 
-    this.keyCodes.splice(keyIndex, 1);
+    this.eventHandlers.splice(keyIndex, 1);
 
-    if(this.keyCodes.length === 0){
+    if (this.keyCodes.length === 0) {
         this.stop();
     } else {
         // this.reset();
     }
-    
+
+}
+
+
+function searchIndexByKeyCode(keyCode, eventHandlers) {
+    for (var i = 0; i < eventHandlers.length; i++) {
+        if (eventHandlers[i].keyCode === keyCode) {
+            return i;
+        }
+    }
+
+    return -1;
 }
 
 /**
@@ -118,7 +135,9 @@ ButtonListener.prototype.removeListener = function(keyCode){
 */
 ButtonListener.prototype.buttonListener = function (info) {
     if (info) {
-        cordova.fireWindowEvent("buttonlistener", info);
+        // cordova.fireWindowEvent("buttonlistener", info);
+        var keyIndex = searchIndexByKeyCode(info.keyCode, this.eventHandlers);
+        this.eventHandlers[keyIndex].callback(info);
     }
 };
 
