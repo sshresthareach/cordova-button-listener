@@ -54,7 +54,7 @@ var ButtonListener = function () {
  */
 ButtonListener.prototype.start = function () {
     console.log('Starting listener');
-    exec(ButtonListener.buttonListener, ButtonListener.errorListener, "ButtonListener", "start", []);
+    exec(ButtonListener.buttonListener.bind(this), ButtonListener.errorListener.bind(this), "ButtonListener", "start", []);
     this.listening = true;
 };
 
