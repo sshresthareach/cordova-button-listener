@@ -74,7 +74,7 @@ ButtonListener.prototype.stop = function () {
  */
 ButtonListener.prototype.reset = function () {
     console.log('Resetting listener');
-    exec(ButtonListener.buttonListener, ButtonListener.errorListener, "ButtonListener", "start", []);
+    exec(ButtonListener.buttonListener.bind(this), ButtonListener.errorListener.bind(this), "ButtonListener", "start", []);
 };
 
 
