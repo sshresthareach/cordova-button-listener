@@ -52,7 +52,6 @@ var ButtonListener = function () {
  * @memberof ButtonListener
  */
 ButtonListener.prototype.start = function () {
-    console.log('Starting listener');
     exec(ButtonListener.buttonListener.bind(this), ButtonListener.errorListener.bind(this), "ButtonListener", "start", []);
     this.listening = true;
 };
