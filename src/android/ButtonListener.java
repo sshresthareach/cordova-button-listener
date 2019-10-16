@@ -62,7 +62,6 @@ public class ButtonListener extends CordovaPlugin implements OnKeyListener {
 	* 
 	* 	@date		10/12/2016
 	* 	@version	0.0.3
-	* 	@author	ManuelDeveloper(manueldeveloper@gmail.com) 
 	*/
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
