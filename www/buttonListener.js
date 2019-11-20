@@ -70,7 +70,7 @@ ButtonListener.prototype.stop = function () {
  * @memberof ButtonListener
  */
 ButtonListener.prototype.reset = function () {
-    console.log('Resetting listener');
+    console.log('CV: Resetting listener');
     exec(ButtonListener.buttonListener.bind(this), ButtonListener.errorListener.bind(this), "ButtonListener", "start", []);
 };
 
@@ -150,7 +150,7 @@ ButtonListener.prototype.buttonListener = function (info) {
 * 	Error callback for listener start
 */
 ButtonListener.prototype.errorListener = function (e) {
-    console.log("Error initializing ButtonListener: " + e);
+    console.log("CV: Error initializing ButtonListener: " + e);
 };
 
 var ButtonListener = new ButtonListener();
