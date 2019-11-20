@@ -159,7 +159,7 @@ public class ButtonListener extends CordovaPlugin implements OnKeyListener {
 	private void sendSignal(JSONObject info, boolean keepCallback)
 	{
 		if( this.listenerCallbackContext != null ){
-			PluginResult result= new PluginResult(PluginResult.Status.OK, info);
+			PluginResult result = new PluginResult(PluginResult.Status.OK, info);
 			result.setKeepCallback(keepCallback);
 			this.listenerCallbackContext.sendPluginResult(result);
 		}
