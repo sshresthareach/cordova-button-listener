@@ -20,7 +20,7 @@
  	<!-- android -->
  	<platform name="android">
 	 	<config-file target="res/xml/config.xml" parent="/*">
-			<uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+			<uses-feature android:name="android.hardware.touchscreen"/>
 		 	<feature name="ButtonListener">
 			 	<param name="android-package" value="com.reach.ButtonListener"/>
 			</feature>
