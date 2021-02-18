@@ -34,7 +34,7 @@ import android.view.View.OnKeyListener;
 
 public class ButtonListener extends CordovaPlugin implements OnKeyListener {
 
-	private static final String ButtonListener_LOG= "ButtonListener";	
+	private static final String ButtonListener_LOG= "REACHLog: ButtonListener";	
 	private CallbackContext listenerCallbackContext;
 
 
