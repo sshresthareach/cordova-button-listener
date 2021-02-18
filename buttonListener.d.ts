@@ -8,7 +8,7 @@ interface ButtonListener {
     reset(): void;
     addListener(
         keyCode: number,
-        callback: (event?: Event) => void
+        callback: (event: Event) => void
     ): void;
     removeListener(keyCode: number): void;
     buttonListener(info: {keycode: number}): void;
