@@ -15,7 +15,7 @@
     </engines>
     
  	<js-module src="www/buttonListener.js" name="buttonlistener">
- 		<clobbers target="window.plugins.buttonListener" />
+ 		<clobbers target="cordova.plugins.buttonListener" />
  	</js-module>
  	
  	<!-- android -->
