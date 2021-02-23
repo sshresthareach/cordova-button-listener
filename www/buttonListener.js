@@ -85,8 +85,8 @@ ButtonListener.prototype.addListener = function (keyCode, callback) {
     }
 
     const eventHandler = {
-        keyCode,
-        callback
+        keyCode: keyCode,
+        callback: callback
     }
 
     this.eventHandlers.push(eventHandler);
